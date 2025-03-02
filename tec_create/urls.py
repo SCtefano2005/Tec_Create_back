@@ -16,11 +16,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from usuarios.views import GoogleLoginRedirect
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', include('usuarios.urls')),  # Incluir las URLs de la aplicación
-    path('auth/', include('dj_rest_auth.urls')),  # URLs de autenticación con JWT
-    path('auth/registration/', include('dj_rest_auth.registration.urls')),  # Registro de usuarios
-    path('auth/social/', include('allauth.socialaccount.urls')),  # Autenticación social
+    path('accounts/', include('allauth.urls')),  # Incluye las URLs de allauth
+    path("accounts/google/logins/", GoogleLoginRedirect.as_view(), name="google_login_redirect"),
 ]

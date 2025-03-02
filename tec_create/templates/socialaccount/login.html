@@ -1,0 +1,23 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Redirigiendo...</title>
+    <script>
+        window.onload = function() {
+            document.forms[0].submit();  // Envía el formulario automáticamente
+        };
+    </script>
+</head>
+<body>
+    <form method="post" action="{{ process_url }}">
+        {% csrf_token %}
+        <input type="hidden" name="next" value="{{ next }}" />
+        <noscript>
+            <p>Haga clic en el botón si la redirección no funciona automáticamente.</p>
+            <input type="submit" value="Continuar">
+        </noscript>
+    </form>
+</body>
+</html>
