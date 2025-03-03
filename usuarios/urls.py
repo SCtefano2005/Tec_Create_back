@@ -1,9 +1,6 @@
-from django.shortcuts import redirect
-from allauth.socialaccount.providers.google.views import GoogleOAuth2Adapter
-from allauth.socialaccount.providers.oauth2.views import OAuth2LoginView
+from django.urls import path
+from .views import google_auth
 
-class GoogleLoginRedirect(OAuth2LoginView):
-    adapter_class = GoogleOAuth2Adapter
-
-    def dispatch(self, request, *args, **kwargs):
-        return redirect(self.get_redirect_url())
+urlpatterns = [
+    path('google-auth/', google_auth, name='google_auth'),
+]

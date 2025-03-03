@@ -32,6 +32,7 @@ INSTALLED_APPS = [
     'usuarios',
     'django_extensions',
 
+
     'rest_framework',
     'corsheaders',
     'allauth',
@@ -96,10 +97,12 @@ ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 ROOT_URLCONF = 'tec_create.urls'
 
 
+BASE_DIR = Path(__file__).resolve().parent.parent
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'],  # Busca plantillas en la carpeta templates/
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -111,6 +114,8 @@ TEMPLATES = [
         },
     },
 ]
+
+
 
 WSGI_APPLICATION = 'tec_create.wsgi.application'
 

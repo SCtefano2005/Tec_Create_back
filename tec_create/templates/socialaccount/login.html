@@ -1,23 +1,15 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>Redirigiendo...</title>
+{% extends "socialaccount/base_entrance.html" %}
+{% load i18n %}
+{% load allauth %}
+{% load socialaccount %}
+
+{% block head_title %}
+    {% trans "Sign In" %}
+{% endblock head_title %}
+
+{% block content %}
     <script>
-        window.onload = function() {
-            document.forms[0].submit();  // Envía el formulario automáticamente
-        };
+        // Redirige automáticamente a la página de inicio de sesión de Google
+        window.location.href = "{% provider_login_url 'google' %}";
     </script>
-</head>
-<body>
-    <form method="post" action="{{ process_url }}">
-        {% csrf_token %}
-        <input type="hidden" name="next" value="{{ next }}" />
-        <noscript>
-            <p>Haga clic en el botón si la redirección no funciona automáticamente.</p>
-            <input type="submit" value="Continuar">
-        </noscript>
-    </form>
-</body>
-</html>
+{% endblock content %}
